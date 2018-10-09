@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+
+<!-- <h2>{{myTxt}}</h2>
+<div class="container"> 
+  <h2>Vertical (basic) form</h2>
+  <form ng-submit="submitForm()">
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" id="email" placeholder="Enter email" ng-model="user.email" name="email">
+    </div>
+    <div class="form-group">
+      <label for="pwd">Password:</label>
+      <input type="password" class="form-control" id="pwd" placeholder="Enter password"  ng-model="user.pwd" name="pwd">
+    </div>
+    <div class="checkbox">
+      <label><input type="checkbox" name="remember"> Remember me</label>
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form>
+</div> -->
+
+
+<div class="container bmiCalc"> 
+  <h2>BMI CALCULATOR</h2>
+  <form ng-submit="submitBmiForm()">
+    <div class="form-group">
+      <label for="height">Enter your Height in meters:</label>
+      <input type="text" class="form-control" id="height" placeholder="Enter height" ng-model="user.height" name="height">
+    </div>
+    <div class="form-group">
+      <label for="weight">Enter your Weight in Kg:</label>
+      <input type="text" class="form-control" id="weight" placeholder="Enter weight"  ng-model="user.weight" name="weight">
+    </div>
+    <div class="checkbox">
+      <label><input type="checkbox" name="remember"> Remember me</label>
+    </div>
+    <button type="submit" class="btn btn-default">Calculate</button>
+  </form>
+  
+  <h2>Your Bmi is: </h2>
+  <h2>{{yourBmi}}</h2>
+</div>
+
+
+ <script>
+var app = angular.module("myApp", []);
+app.controller("myCtrl", function($scope,$http) {
+  $scope.myTxt = "You have not yet clicked submit";
+  $scope.submitForm = function () {
+      //$scope.myTxt = "You submitted!";
+      
+      $http.post('/login/validateUser', $scope.user).then(function(response) {
+    	  $scope.myTxt = response.data.email +' saved';			
+		}, function(response) {
+			alert('Something went wrong, Please contact Admin ' + response.data.message);
+		});   
+  }
+  
+  $scope.submitBmiForm = function () {
+  
+      
+      $http.post('/bmi/calculate', $scope.user).then(function(response) {
+    	  $scope.yourBmi = response.data.userBmi;			
+		}, function(response) {
+			alert('Something went wrong, Please contact Admin ' + response.data.message);
+		});   
+  }
+  
+  
+});
+</script>  
+
+</body>
+</html>
+
