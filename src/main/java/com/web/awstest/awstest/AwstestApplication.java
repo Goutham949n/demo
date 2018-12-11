@@ -11,3 +11,6 @@ public class AwstestApplication {
 		SpringApplication.run(AwstestApplication.class, args);
 	}
 }
+/*npm uninstall -g @angular/cli
+$ npm cache clean
+$ npm install -g @angular/cli*/

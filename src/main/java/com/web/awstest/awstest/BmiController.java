@@ -1,10 +1,9 @@
 package com.web.awstest.awstest;
 
-import org.springframework.util.NumberUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = "/bmi")
 public class BmiController {
 	
-	@RequestMapping(value = "/calculate", method = RequestMethod.POST)
+	@PostMapping(value = "/calculate")
 	@ResponseBody
 	public User calculateBmi(@RequestBody User user)
 	{

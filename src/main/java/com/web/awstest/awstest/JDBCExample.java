@@ -1,6 +1,10 @@
 package com.web.awstest.awstest;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class JDBCExample {
 
@@ -18,9 +22,12 @@ public class JDBCExample {
 
 	public static void main(String[] args) {
 
+	  //DriverManager
 		Connection conn = null;
 
 		Statement stmt = null;
+		
+		ResultSet rs = null;
 
 		try {
 
@@ -44,7 +51,7 @@ public class JDBCExample {
 
 			String sql = "SELECT id FROM bmi";
 
-			ResultSet rs = stmt.executeQuery(sql);
+			 rs = stmt.executeQuery(sql);
 
 			// STEP 5: Extract data from result set
 
